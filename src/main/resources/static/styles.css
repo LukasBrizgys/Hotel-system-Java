@@ -355,9 +355,16 @@ input[type="checkbox"] {
 }
 .room-info-wrapper{
 	margin-top:40px;
+	display:flex;
+	flex-direction:column;
+	
+}
+.room-photo-gallery-container{
+	max-width:900px;
 }
 .image-row{
 	display:flex;
+	
 	flex-direction:column;
 	gap:10px;
 }
@@ -365,12 +372,17 @@ input[type="checkbox"] {
 	display:flex;
 	gap:10px;
 }
-.rooms-info{
-	display:flex;
-	justify-content:space-evenly;
-}
+
 .expanded-picture-container img{
 	max-width:100%;
+}
+
+/* user reservations styles */
+.reservation-table-head, .reservation-table-element{
+	padding:15px;
+	text-align:center;
+	font-family:"Inter", sans-sarif;
+	font-size:20px;
 }
 /* Media queries */
 @media only screen and (max-width: 768px) {

@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -18,20 +20,20 @@
         <form method="GET" action="/reserve">
             <table class="main-table">
                 <tr>
-                    <th>Įsikraustymas</th>
-                    <th>Išsikraustymas</th>
-                    <th>Dienų skaičius</th>
-                    <th>Maitinimas</th>
-                    <th>Kambarių aptarnavimas</th>
-                    <th>Kaina</th>
+                    <th class="reservation-table-head">Atvykimas</th>
+                    <th class="reservation-table-head">Išvykimas</th>
+                    <th class="reservation-table-head">Dienų skaičius</th>
+                    <th class="reservation-table-head">Maitinimas</th>
+                    <th class="reservation-table-head">Kambarių aptarnavimas</th>
+                    <th class="reservation-table-head">Kaina</th>
                 </tr>
                 <tr th:each="booking: ${booking}" style="border-bottom: 1px solid #D5D5D5">
-                    <td th:text="${booking.checkOut}"></td>
-                    <td th:text="${booking.checkIn}"></td>
-                    <td th:text="${booking.day_count}"></td>
-                    <td th:text="${booking.meals}"></td>
-                    <td th:text="${booking.services}"></td>
-                    <td th:text="${booking.totalPrice}"></td>
+                    <td class="reservation-table-element" th:text="${booking.checkIn}"></td>
+                    <td class="reservation-table-element" th:text="${booking.checkOut}"></td>
+                    <td class="reservation-table-element" th:text="${booking.day_count}"></td>
+                    <td class="reservation-table-element" th:text="${booking.meals} ? 'Yra': 'Nėra'"></td>
+                    <td class="reservation-table-element" th:text="${booking.services} ? 'Yra' : 'Nėra'"></td>
+                    <td class="reservation-table-element" th:text="${booking.totalPrice} + '€'"></td>
                 </tr>
             </table>
         </form>
