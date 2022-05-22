@@ -25,7 +25,7 @@ public class DateCompareValidator implements ConstraintValidator<DateCompare, Ob
 				.getPropertyValue(arrivalDate).toString());
 		LocalDate secondValue = LocalDate.parse(new BeanWrapperImpl(value)
 				.getPropertyValue(departureDate).toString());
-		if(firstValue.isAfter(secondValue)) return false;
+		if(firstValue.isAfter(secondValue) || firstValue.equals(secondValue)) return false;
 		return true;
 		}catch(DateTimeParseException e) {
 			return true;
