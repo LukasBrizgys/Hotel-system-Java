@@ -1,14 +1,18 @@
 package lt.ku.hotel.entities;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -49,6 +53,13 @@ public class Room {
 	public Room() {
 		super();
 	}
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+			name="room_feature",
+			joinColumns = { @JoinColumn(name = "roomId")},
+			inverseJoinColumns = { @JoinColumn(name = "featureId")}
+			)
+	List<Feature> features = new ArrayList<Feature>();
 	
 	public Room(String room_size, Integer guest_limit, String description, BigDecimal price, String thumbnail,
 			boolean is_reserved) {
@@ -108,5 +119,37 @@ public class Room {
 		this.thumbnail = thumbnail;
 	}
 
+	public RoomType getRoom_type() {
+		return room_type;
+	}
+
+	public void setRoom_type(RoomType room_type) {
+		this.room_type = room_type;
+	}
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+	public List<Picture> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
+	}
+
+	public List<Feature> getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(List<Feature> features) {
+		this.features = features;
+	}
+	
 	
 }

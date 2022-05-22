@@ -22,4 +22,40 @@ public class Picture {
 	
 	@Column(columnDefinition="TEXT")
 	private String name;
+
+	public Picture() {
+		super();
+	}
+
+	public Picture(Room room, String name) {
+		super();
+		this.room = room;
+		this.name = name;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 }
