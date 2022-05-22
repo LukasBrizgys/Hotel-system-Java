@@ -346,6 +346,32 @@ input[type="checkbox"] {
 	display:flex;
 	justify-content:space-evenly;
 }
+/* room info styles*/
+
+.room-heading{
+	text-align:center;
+	font-family:"Inter", sans-sarif;
+	margin-top:80px;
+}
+.room-info-wrapper{
+	margin-top:40px;
+}
+.image-row{
+	display:flex;
+	flex-direction:column;
+	gap:10px;
+}
+.image-column{
+	display:flex;
+	gap:10px;
+}
+.rooms-info{
+	display:flex;
+	justify-content:space-evenly;
+}
+.expanded-picture-container img{
+	max-width:100%;
+}
 /* Media queries */
 @media only screen and (max-width: 768px) {
 	.room-search-container{

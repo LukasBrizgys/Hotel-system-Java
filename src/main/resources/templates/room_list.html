@@ -19,8 +19,10 @@
 		<div class="room-description" th:text="${room.description}"></div>
 		<div class="price-container">
 		<p th:text="${room.price} + '€' + ' - kaina parai' "></p>
-		<form method="GET" action="/room">
-			<input type="hidden" name="id" th:value="${room.id}">
+		<form method="GET" th:action="'/room/' + ${room.id}">
+			<input type="hidden" name="arrivalDate" th:value="${arrivalDate}">
+			<input type="hidden" name="departureDate" th:value="${departureDate}">
+			<input type="hidden" name="guestCount" th:value="${guestCount}">
 			<button type="submit" class="more-info-button">Detalesnė informacija</button>
 		</form>
 		<form method="GET" action="/reserve">
