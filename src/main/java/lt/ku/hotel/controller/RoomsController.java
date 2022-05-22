@@ -1,14 +1,10 @@
 package lt.ku.hotel.controller;
 
-
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lt.ku.hotel.services.RoomService;
@@ -33,5 +29,26 @@ public class RoomsController {
 		model.addAttribute("rooms", roomService.getAllUnreservedRooms(arrival, departure, guestCount));
 		
 		return "room_list";
+	}
+	
+	@GetMapping("/room/{id}")
+	public String showRoomInfo(@PathVariable("id") Integer id,
+			@RequestParam(required = false) String arrivalDate,
+			@RequestParam(required = false) String departureDate,
+			@RequestParam(required = false) String guestCount,
+			Model model
+			) {
+		if(arrivalDate == null || departureDate == null || guestCount == null) {
+			return "redirect:/";
+		}
+		
+		model.addAttribute("roomAttributes", roomService.getRoom(id));
+		model.addAttribute("features", roomService.getAllRoomFeatures(id));
+		model.addAttribute("pictures", roomService.getAllRoomPictures(id));
+		model.addAttribute("arrivalDate", arrivalDate);
+		model.addAttribute("departureDate", departureDate);
+		model.addAttribute("guestCount", guestCount);
+		
+		return "room_info";
 	}
 }
