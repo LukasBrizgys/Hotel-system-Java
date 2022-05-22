@@ -358,6 +358,10 @@ input[type="checkbox"] {
 }
 .tagstext{
 	font-family: 'Inter', sans-serif;
+	font-size: 20px;
+}
+.infotext{
+	font-family: 'Inter', sans-serif;
 }
 .feature{
 	font-family: 'Inter', sans-serif;

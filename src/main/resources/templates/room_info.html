@@ -28,13 +28,19 @@
 </div>
 </div>
 <div class="room-info-container">
-		<p class="tagstext">Kambario įpatumai</p>
+	<p class="tagstext">Kambario įpatumai</p>
 	<div class="info-rap">
 	<div th:each="feature : ${features}">
 		<div class="feature" th:text="${feature.name}"></div>
 	</div>
 	</div>
-</div>
+	<p class="tagstext">Kambario aprašymas</p>
+	<div class="infotext" th:text="${roomAttributes.getDescription()}"></div>
+	<p class="tagstext">Kambario dydis</p>
+	<div class="infotext" th:text="${roomAttributes.getRoom_size()}"></div>
+	<p class="tagstext">Kaina</p>
+	<div class="infotext" th:text="${roomAttributes.getPrice()}"></div>
+
 </div>
 </div>
 <script>
