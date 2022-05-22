@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<div th:insert="fragments/navigation.html :: nav"></div>
 <h1 class="room-heading">Kambario informacija</h1>
 <div class="divider div-transparent"></div>
 
@@ -39,7 +40,6 @@
 function expand(imgs) {
 	  const expandImg = document.getElementById("expanded-image");
 	  expandImg.src = imgs.src;
-	  imgText.innerHTML = imgs.alt;
 	  expandImg.parentElement.style.display = "block";
 	}
 </script>

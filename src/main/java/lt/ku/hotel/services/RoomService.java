@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import lt.ku.hotel.entities.Feature;
 import lt.ku.hotel.entities.Picture;
 import lt.ku.hotel.entities.Room;
+import lt.ku.hotel.repositories.FeatureRepository;
 import lt.ku.hotel.repositories.RoomRepository;
 
 @Service
@@ -16,6 +17,8 @@ public class RoomService {
 	@Autowired
 	RoomRepository roomRepository;
 	
+	@Autowired
+	FeatureRepository featureRepository;
 	public List<Room> getAllRooms(){
 		return roomRepository.findAll();
 	}
@@ -53,6 +56,6 @@ public class RoomService {
 	}
 	
 	public List<Feature> getAllRoomFeatures(Integer roomId){
-		return roomRepository.findAllRoomFeatures(roomId);
+		return featureRepository.findFeaturesByRoomsId(roomId);
 	}
 }

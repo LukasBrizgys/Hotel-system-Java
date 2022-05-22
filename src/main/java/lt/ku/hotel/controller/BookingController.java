@@ -104,7 +104,10 @@ public class BookingController {
 	}
 	@GetMapping("/reservations")
 	public String getReservations(Model model){
-		model.addAttribute("booking", bookingService.getAllBookings());
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Client client = (Client) authentication.getPrincipal(); //atkomentuoti jei yra norima gaut PRISIJUNGUSIO kliento id
+		Integer userId = client.getId();
+		model.addAttribute("booking", bookingService.getClientBookings(userId));
 		return "reservations";
 	}
 }

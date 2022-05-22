@@ -22,5 +22,8 @@ public class BookingService {
 	}
 	public Booking addBooking(Booking booking) {
 		return bookingRepository.save(booking);
-	}	
+	}
+	public List<Booking> getClientBookings(Integer id){
+		return bookingRepository.findBookingsByClientId(id);
+	}
 }

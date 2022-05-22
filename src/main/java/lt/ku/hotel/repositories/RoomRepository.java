@@ -36,10 +36,8 @@ public interface RoomRepository extends JpaRepository<Room, Integer>{
 	@Query("SELECT p FROM Picture p LEFT JOIN p.room r WHERE r.id = :roomId")
 	List<Picture> findAllRoomPictures(Integer roomId);
 	
-	@Query(value = "SELECT f FROM feature f"
-			+ " INNER JOIN room_feature rf ON rf.feature_id = f.id"
-			+ " LEFT JOIN room ON rf.room_id = :roomId", nativeQuery = true)
-	List<Feature> findAllRoomFeatures(Integer roomId);
+	
+	List<Room> findRoomsByFeaturesId(Integer roomId);
 		
 	
 }
