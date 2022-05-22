@@ -14,15 +14,14 @@
  <div class="reservation-confirm-container">
  	<div>
 	
-	<form method="POST" action="/reserve" class="reservation-confirm-form">
+	<form method="POST" action="/reserve" class="reservation-confirm-form" th:object="${booking}">
 		<div th:text="'Atvykimo data: ' + ${arrivalDate}"></div>
 		<div th:text="'Išvykimo data: ' + ${departureDate}"></div>
 		<div th:text="'Apgyvendinimo laikotarpis: ' + ${dayCount} + ' dienų'"></div>
+		<div th:text="'Svečių skaičius: ' + ${guestCount}"></div>
 		<input type="hidden" name="arrivalDate" th:value="${arrivalDate}">
-		<input type="hidden" name="departureDate" th:value="departureDate">
+		<input type="hidden" name="departureDate" th:value="${departureDate}">
 		<input type="hidden" name="guestCount" th:value="${guestCount}">
-		
-		
 		<label for="mealsCheckbox">
 		<input type="checkbox" value="20.00" name="meals" id="mealsCheckbox">
 		Maitinimas (+20€)
@@ -44,31 +43,13 @@
 			</div>
 		</div>
 		<div class="reservation-confirm-buttons">
-			<button class="reservation-cancel-button">Atšaukti</button>
+			<button class="reservation-cancel-button" type="button" onclick='javascript:window.history.back()'>Atšaukti</button>
 			<button type="submit" class="reservation-submit-button">Patvirtinti</button>
 		</div>
 	</form>
 	</div>
  </div>
  
- <script>
- const form = document.getElementsByTagName("form")[0];
- 
- 
- const services = document.getElementById('servicesCheckbox');
- const meals = document.getElementById('mealsCheckbox');
- 
- 
- form.addEventListener("click", (e) =>{
-	 const target = e.target;
-	 const priceElement = document.querySelector(".actual-price");
-	 let price = parseFloat(priceElement.innerText);
-	 if(String(target).toLowerCase().includes("input")){
-		 const clickedCheckboxValue = parseFloat(target.value);
-		 priceElement.innerText = target.checked ? `${(price + clickedCheckboxValue).toFixed(2)}€`
-				 : `${(price - clickedCheckboxValue).toFixed(2)}€`;
-	 }
- })
- </script>
+ <script th:src="@{/js/reservation.js}"></script>
 </body>
 </html>

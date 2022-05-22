@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kambarių sąrašas</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div th:insert="fragments/navigation.html :: nav"></div>
+<h1 class="room-list-heading">Kambarių sąrašas</h1>
+<div class="divider div-transparent"></div>
+<div class="rooms-container">
+    <div th:each="room: ${rooms}" class="room-wrapper">
+        <img class="room-thumbnail" th:src="@{${'./images/'+room.thumbnail}}" width="300" height="300" alt="hotel room photo">
+        <div class="room-description" th:text="${room.description}"></div>
+        <div class="price-container">
+            <p th:text="${room.price} + '€' + ' - kaina parai' "></p>
+            <form method="GET" action="/room">
+                <input type="hidden" name="id" th:value="${room.id}">
+                <button type="submit" class="more-info-button">Detalesnė informacija</button>
+            </form>
+            <form method="GET" action="/reserve">
+                <input type="hidden" name="roomId" th:value="${room.id}">
+                <input type="hidden" name="arrivalDate" th:value="${arrivalDate}">
+                <input type="hidden" name="departureDate" th:value="${departureDate}">
+                <input type="hidden" name="guestCount" th:value="${guestCount}">
+                <button class="reservation-button" type="submit">Rezervuoti</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
