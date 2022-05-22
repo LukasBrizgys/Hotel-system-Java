@@ -12,13 +12,13 @@
 <div th:insert="fragments/navigation.html :: nav"></div>
 <h1 class="room-heading">Kambario informacija</h1>
 <div class="divider div-transparent"></div>
-
+<div class="desc-wrapper">
 <div class="room-info-wrapper">
 <div class="room-photo-gallery-container">
 
 <div class="image-row">
 	<div class="expanded-picture-container">
-		<img th:src="@{${'/images/' + roomAttributes.thumbnail}}" id="expanded-image" width="830" height="800">
+		<img th:src="@{${'/images/' + roomAttributes.thumbnail}}" id="expanded-image" width="430" height="400">
 	</div>
 	<div class="image-column">
 	<div th:each="picture: ${pictures}">
@@ -28,12 +28,13 @@
 </div>
 </div>
 <div class="room-info-container">
-	<ul>
-	
-	</ul>
+		<p class="tagstext">Kambario įpatumai</p>
+	<div class="info-rap">
 	<div th:each="feature : ${features}">
-		<div th:text="${feature.name}"></div>
+		<div class="feature" th:text="${feature.name}"></div>
 	</div>
+	</div>
+</div>
 </div>
 </div>
 <script>
