@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import lt.ku.hotel.entities.Feature;
+import lt.ku.hotel.entities.Picture;
 import lt.ku.hotel.entities.Room;
 
 @Repository
@@ -30,5 +32,14 @@ public interface RoomRepository extends JpaRepository<Room, Integer>{
 			+ "  AND bookings.check_in <= :departureDate\r\n"
 			+ "  ) AND room.guest_limit >= :guestCount AND room.id = :roomId LIMIT 1", nativeQuery = true)
 	Integer checkIfReserved(Integer roomId, String arrivalDate, String departureDate, Integer guestCount);
+	
+	@Query("SELECT p FROM Picture p LEFT JOIN p.room r WHERE r.id = :roomId")
+	List<Picture> findAllRoomPictures(Integer roomId);
+	
+	@Query(value = "SELECT f FROM feature f"
+			+ " INNER JOIN room_feature rf ON rf.feature_id = f.id"
+			+ " LEFT JOIN room ON rf.room_id = :roomId", nativeQuery = true)
+	List<Feature> findAllRoomFeatures(Integer roomId);
+		
 	
 }

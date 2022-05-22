@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lt.ku.hotel.entities.Feature;
+import lt.ku.hotel.entities.Picture;
 import lt.ku.hotel.entities.Room;
 import lt.ku.hotel.repositories.RoomRepository;
 
@@ -45,5 +47,12 @@ public class RoomService {
 		Integer isUnreserved = roomRepository.checkIfReserved(roomId, arrivalDate, departureDate, guestCount);
 		if(isUnreserved == 1) return false;
 		return true;
+	}
+	public List<Picture> getAllRoomPictures(Integer roomId){
+		return roomRepository.findAllRoomPictures(roomId);
+	}
+	
+	public List<Feature> getAllRoomFeatures(Integer roomId){
+		return roomRepository.findAllRoomFeatures(roomId);
 	}
 }
